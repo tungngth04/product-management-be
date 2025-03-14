@@ -51,7 +51,7 @@
 }
 .product-item .inner-image {
   width: 100%;
-  aspect-ratio: 4/3;
+  /* aspect-ratio: 4/3;A */
   border-bottom: 1px solid #ddd;
 }
 .product-item .inner-image img {
