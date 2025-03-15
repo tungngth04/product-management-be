@@ -5,6 +5,8 @@ const routeAdmin = require("./routes/admin/index.route");
 
 const database = require("./config/database");
 
+const systemConfig = require("./config/system");
+
 database.connect();
 
 const app = express();
@@ -15,6 +17,8 @@ app.set("view engine", "pug");
 
 app.use(express.static("public"));
 
+// App Locals Variables
+app.locals.prefixAdmin = systemConfig.prefixAdmin;
 route(app);
 routeAdmin(app);
 
