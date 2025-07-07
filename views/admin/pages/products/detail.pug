@@ -30,9 +30,9 @@ block main
 
     if (product.position)
         div(class="mb-4") Vi trí: <b>#{product.position}</b>
-
+    // dùng ! vì tiny mce trả về html nên ! sẽ hiện thị html còn # hiện thị text
     if (product.description)
-        div(class="mb-4") #{product.description}
+        div(class="mb-4") !{product.description} 
 
     a(
         href=`${prefixAdmin}/products/edit/${product.id}`

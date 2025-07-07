@@ -2,11 +2,14 @@ const express = require("express");
 const router = express.Router();
 // upload file
 const multer = require("multer");
-// import storage định nghĩa bên kia qua để có thể sử dụng
-const storageMulter = require("../../helpers/storageMulter");
-const upload = multer({ storage: storageMulter() }); // dest đường dẫn lưu (vị trí lưu)
-// const upload = multer({ dest: "./public/uploads/" }); // dest đường dẫn lưu (vị trí lưu)
+// import storage định nghĩa bên kia qua để có thể sử dụng dùng bằng multer
+// const storageMulter = require("../../helpers/storageMulter");
+// const upload = multer({ storage: storageMulter() }); // dest đường dẫn lưu (vị trí lưu)
 
+// dùng bằng cloudinary
+const upload = multer();
+
+const uploadCloud = require("../../middlewares/admin/uploadCloud.middlewares");
 const controller = require("../../controllers/admin/product.controllers");
 
 const validate = require("../../validates/admin/product.validate");
@@ -24,6 +27,7 @@ router.get("/create", controller.create);
 router.post(
   "/create",
   upload.single("thumbnail"),
+  uploadCloud.upload,
   validate.createPost,
   controller.createPost
 );
@@ -33,6 +37,7 @@ router.get("/edit/:id", controller.edit);
 router.patch(
   "/edit/:id",
   upload.single("thumbnail"),
+  uploadCloud.upload,
   validate.createPost,
   controller.editPatch
 );

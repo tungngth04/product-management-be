@@ -51,13 +51,26 @@
 }
 .product-item .inner-image {
   width: 100%;
-  /* aspect-ratio: 4/3;A */
+  aspect-ratio: 4/3;
   border-bottom: 1px solid #ddd;
+  position: relative;
 }
 .product-item .inner-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.product-item .inner-featured {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: green;
+  color: white;
+  padding: 3px 6px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .product-item .inner-content {
@@ -89,4 +102,80 @@
   display: inline-block;
   padding: 3px 10px;
   border-radius: 8px;
+}
+
+/*sub-menu */
+.sub-menu {
+  position: relative;
+  z-index: 999;
+}
+
+.sub-menu ul {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: #fff;
+  display: none;
+  min-width: 100px;
+}
+
+.sub-menu ul li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.sub-menu:hover > ul {
+  display: block;
+}
+
+.sub-menu ul li {
+  position: relative;
+}
+
+.sub-menu ul li ul {
+  right: 100%;
+  top: 0;
+}
+
+.sub-menu ul li:hover > ul {
+  display: block;
+}
+
+/* Hiện thị thông báo */
+[show-alert] {
+  position: fixed;
+  top: 70px;
+  right: 15px;
+  z-index: 9999;
+}
+
+[show-alert].alert-hidden {
+  animation-name: alert-hidden;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+@keyframes alert-hidden {
+  from {
+    right: 15px;
+  }
+  to {
+    right: -100%;
+    display: none;
+  }
+}
+
+[show-alert] [close-alert] {
+  background: #ffffffc4;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  font-weight: 600;
+  border-radius: 50%;
+  cursor: pointer;
 }

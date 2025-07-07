@@ -160,3 +160,46 @@ if (uploadImage) {
     }
   });
 }
+
+// sort
+const sort = document.querySelector("[sort]");
+if (sort) {
+  let url = new URL(window.location.href);
+
+  const sortSelect = sort.querySelector("[sort-select]");
+  const sortClear = sort.querySelector("[sort-clear]");
+
+  sortSelect.addEventListener("change", (e) => {
+    const value = e.target.value;
+    const [sortkey, sortValue] = value.split("-");
+    console.log(value.split("-"));
+
+    console.log(sortkey);
+    console.log(sortValue);
+
+    url.searchParams.set("sortKey", sortkey);
+    url.searchParams.set("sortValue", sortValue);
+
+    window.location.href = url.href;
+  });
+
+  // xoá sắp xếp
+  sortClear.addEventListener("click", () => {
+    url.searchParams.delete("sortKey");
+    url.searchParams.delete("sortValue");
+    window.location.href = url.href;
+  });
+
+  // Thêm selected cho option
+  const sortkey = url.searchParams.get("sortKey");
+  const sortValue = url.searchParams.get("sortValue");
+
+  if (sortkey && sortValue) {
+    const stringSort = `${sortkey}-${sortValue}`;
+    console.log(stringSort);
+    const optionSelected = sortSelect.querySelector(
+      `option[value='${stringSort}']`
+    );
+    optionSelected.selected = true;
+  }
+}
